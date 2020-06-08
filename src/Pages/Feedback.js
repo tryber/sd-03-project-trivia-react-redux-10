@@ -1,10 +1,10 @@
 import React from 'react';
 
-class Feedback extends React.Component{
+class Feedback extends React.Component {
   render() {
-    return(
+    return (
       <p>Feedback Page</p>
-    )
+    );
   }
 }
 

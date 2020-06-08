@@ -1,10 +1,10 @@
 import React from 'react';
 
-class Questions extends React.Component{
+class Questions extends React.Component {
   render() {
-    return(
+    return (
       <p>Questions Page</p>
-    )
+    );
   }
 }
 

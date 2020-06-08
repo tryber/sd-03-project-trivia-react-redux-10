@@ -1,10 +1,10 @@
 import React from 'react';
 
-class Login extends React.Component{
+class Login extends React.Component {
   render() {
-    return(
+    return (
       <p>Login Page</p>
-    )
+    );
   }
 }
 

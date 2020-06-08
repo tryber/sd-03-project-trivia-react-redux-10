@@ -1,10 +1,10 @@
 import React from 'react';
 
-class Ranking extends React.Component{
+class Ranking extends React.Component {
   render() {
-    return(
+    return (
       <p>Ranking Page</p>
-    )
+    );
   }
 }
 

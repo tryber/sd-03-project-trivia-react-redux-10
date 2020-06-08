@@ -1,10 +1,10 @@
 import React from 'react';
 
-class Settings extends React.Component{
+class Settings extends React.Component {
   render() {
-    return(
+    return (
       <p>Settings Page</p>
-    )
+    );
   }
 }
 
