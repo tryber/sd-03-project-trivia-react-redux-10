@@ -2,12 +2,10 @@
   align-items: center;
   background-color: grey;
   display: flex;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 40px;
-  font-style: normal;
-  font-weight: normal;
   height: 49px;
-  justify-content: space-evenly;
+  justify-content: space-between;
   line-height: 47px;
   width: 625px;
 }
