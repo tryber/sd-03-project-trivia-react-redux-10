@@ -21,8 +21,8 @@ class Ranking extends React.Component {
       <div>
         <h1>RANKING</h1>
         <div className="cards-div">
-          {this.dadosSorted().map((player, index) => 
-            <PlayerCard key={player.name} player={player} index={index} />
+          {this.dadosSorted().map((player, index) =>
+            <PlayerCard key={player.name} player={player} index={index} />,
           )}
         </div>
         <Link to="/"><button data-testid="btn-go-home">Home</button></Link>
