@@ -14,14 +14,16 @@ class Ranking extends React.Component {
     this.dadosSorted = this.dadosSorted.bind(this);
   }
   dadosSorted() {
-    return (this.dados.sort(function (a, b) { return b.score - a.score }));
+    return (this.dados.sort(function (a, b) { return b.score - a.score; }));
   }
   render() {
     return (
       <div>
         <h1>RANKING</h1>
         <div className="cards-div">
-          {this.dadosSorted().map((player, index) => <PlayerCard key={player.name} player={player} index={index} />)}
+          {this.dadosSorted().map((player, index) => 
+            <PlayerCard key={player.name} player={player} index={index} />
+          )}
         </div>
         <Link to="/"><button data-testid="btn-go-home">Home</button></Link>
       </div>
