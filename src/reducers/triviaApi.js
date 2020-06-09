@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   data: [],
 };
 
-export const triviaApi = (sate = INITIAL_STATE, action) => {
+export const triviaApi = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case REQUEST_TRIVIA_API:
     return { ...state, loading: action.loading };
