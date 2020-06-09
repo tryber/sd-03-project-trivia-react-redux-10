@@ -7,7 +7,7 @@ class PlayerCard extends React.Component {
     const { player, index } = this.props;
     return (
       <div className="player-div">
-        <img src={player.picture} className="image" alt={player.name}/>
+        <img src={player.picture} className="image" alt={ player.name }/>
         <p data-testid={`player-name-${index}`} className="name">{player.name}</p>
         <p data-testid={`player-score-${index}`} className="score">{`${player.score} pontos`}</p>
       </div>
