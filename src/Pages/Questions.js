@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchTriviaApi, fetchToken } from '../actions'
+import PropTypes from 'prop-types';
+import { fetchTriviaApi, fetchToken } from '../actions';
 
 class Questions extends React.Component {
 
@@ -11,15 +12,9 @@ class Questions extends React.Component {
       .then(getTrivia(localStorage.getItem('token')));
   }
 
-  fetchApi() {
-    const { getTrivia } = this.props;
-    const actualToken = localStorage.getItem('token');
-    getTrivia(actualToken);
-  }
-
   render() {
     const { loading } = this.props;
-    if (loading) return <p> Loading... </p>
+    if (loading) return <p> Loading... </p>;
     return (
       <p>Questions Page</p>
     );
@@ -35,5 +30,12 @@ const mapStateToProps = (state) => ({
   data: state.triviaApi.data,
   loading: state.triviaApi.loading,
 });
+
+Questions.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  getToken: PropTypes.func.isRequired,
+  getTrivia: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);

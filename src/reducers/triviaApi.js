@@ -10,15 +10,17 @@ const INITIAL_STATE = {
   data: [],
 };
 
-export const triviaApi = (state = INITIAL_STATE, action) => {
+const triviaApi = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case REQUEST_TRIVIA_API:
-    return { ...state, loading: action.loading };
-  case REQUEST_TRIVIA_API_SUCESS:
-    return { ...state, loading: action.loading, data: [...action.data] };
-  case REQUEST_TRIVIA_API_FAILURE:
-    return { ...state, loading: action.loading, error: action.data };
-  default:
-    return state;
+    case REQUEST_TRIVIA_API:
+      return { ...state, loading: action.loading };
+    case REQUEST_TRIVIA_API_SUCESS:
+      return { ...state, loading: action.loading, data: [...action.data] };
+    case REQUEST_TRIVIA_API_FAILURE:
+      return { ...state, loading: action.loading, error: action.data };
+    default:
+      return state;
   }
-}
+};
+
+export default triviaApi;

@@ -9,15 +9,17 @@ const INITIAL_STATE = {
   token: {},
 };
 
-export const requestToken = (state = INITIAL_STATE, action) => {
+const requestToken = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case REQUEST_TOKEN:
-    return { ...state, loading: action.loading };
-  case REQUEST_TOKEN_SUCESS:
-    return { ...state, loading: action.loading, token: action.data };
-  case REQUEST_TOKEN_FAILURE:
-    return { ...state, loading: action.loading, error: action.error };
-  default:
-    return state;
+    case REQUEST_TOKEN:
+      return { ...state, loading: action.loading };
+    case REQUEST_TOKEN_SUCESS:
+      return { ...state, loading: action.loading, token: action.data };
+    case REQUEST_TOKEN_FAILURE:
+      return { ...state, loading: action.loading, error: action.error };
+    default:
+      return state;
   }
-}
+};
+
+export default requestToken;
