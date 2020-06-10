@@ -6,6 +6,8 @@ export const REQUEST_TOKEN = 'REQUEST_TOKEN';
 
 export const REQUEST_TOKEN_SUCESS = 'REQUEST_TOKEN_SUCESS';
 
+export const REQUEST_TOKEN_FAILURE = 'REQUEST_TOKEN_FAILURE';
+
 export const REQUEST_TRIVIA_API_SUCESS = 'REQUEST_TRIVIA_API_SUCESS';
 
 export const REQUEST_TRIVIA_API_FAILURE = 'REQUEST_TRIVIA_API_FAILURE';
@@ -28,6 +30,12 @@ const requestTokenSucess = (token) => ({
   token,
 });
 
+const requestTokenFailure = (error) => ({
+  type: REQUEST_TOKEN_FAILURE,
+  loading: true,
+  error,
+});
+
 const requestTriviaSucess = ({ results }) => ({
   type: REQUEST_TRIVIA_API_SUCESS,
   loading: false,
@@ -37,7 +45,7 @@ const requestTriviaSucess = ({ results }) => ({
 const requestTriviaFailure = (error) => ({
   type: REQUEST_TRIVIA_API_FAILURE,
   loading: false,
-  data: error,
+  error,
 });
 
 export function fetchTriviaApi(token) {
@@ -46,7 +54,7 @@ export function fetchTriviaApi(token) {
 
     return getAllTrivia(token).then(
       (data) => dispatch(requestTriviaSucess(data)),
-      (error) => dispatch(requestTriviaFailure(error.message)),
+      (error) => dispatch(requestTriviaFailure(error)),
     );
   };
 }
@@ -57,6 +65,7 @@ export function fetchToken() {
 
     return getToken().then(
       (token) => dispatch(requestTokenSucess(token)),
-      (error) => dispatch(requestTriviaFailure(error)));
-    };
+      (error) => dispatch(requestTokenFailure(error)),
+    );
+  };
 }
