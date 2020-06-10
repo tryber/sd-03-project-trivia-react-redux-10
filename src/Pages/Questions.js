@@ -13,10 +13,13 @@ class Questions extends React.Component {
   }
 
   render() {
-    const { loading } = this.props;
+    const { data, loading } = this.props;
     if (loading) return <p> Loading... </p>;
     return (
-      <p>Questions Page</p>
+      <div>
+        <h2> Questions page </h2>
+        { data.map((el) => <p>{el.question}</p>) }
+      </div>
     );
   }
 }
