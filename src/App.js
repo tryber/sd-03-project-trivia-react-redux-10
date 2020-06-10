@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Questions from './pages/Questions';
-import Feedback from './pages/Feedback';
-import Ranking from './pages/Ranking';
-import Settings from './pages/Settings';
+import Login from './Pages/Login';
+import Questions from './Pages/Questions';
+import Feedback from './Pages/Feedback';
+import Ranking from './Pages/Ranking';
+import Settings from './Pages/Settings';
 import './App.css';
 
 function App() {
