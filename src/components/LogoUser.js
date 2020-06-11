@@ -6,7 +6,7 @@ const LogoGravatar = ({ urlGravatar }) => {
   console.log(urlGravatar);
   return (
     <div>
-      <img src={urlGravatar} />
+      <img src={urlGravatar} alt="logo user" />
     </div>
   );
 };

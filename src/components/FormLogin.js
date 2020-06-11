@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logInto } from '../actions/login';
-import PropTypes from 'prop-types';
 
 class FormLogin extends Component {
   constructor() {
