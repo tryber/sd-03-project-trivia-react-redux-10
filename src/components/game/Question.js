@@ -1,5 +1,6 @@
 import React from 'react';
 import Alternatives from './Alternatives';
+import Timer from './Timer';
 
 class Question extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class Question extends React.Component {
         <div>
           <Alternatives correct={data.correct_answer} incorrects={data.incorrect_answers} />
         </div>
+        <Timer />
       </div>
     );
   }
