@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchTriviaApi, fetchToken } from '../actions';
 import QuestionLibrary from '../components/game/QuestionLibrary';
+import PlayerHeader from '../components/PlayerHeader';
 
 class Questions extends React.Component {
 
@@ -19,6 +20,7 @@ class Questions extends React.Component {
     return (
       <div>
         <h2> Questions page </h2>
+        <PlayerHeader />
         <QuestionLibrary data={data}/>
       </div>
     );

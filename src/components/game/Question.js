@@ -7,7 +7,7 @@ class Question extends React.Component {
     console.log(data);
     return (
       <div>
-        <div className="header">
+       <div className="header">
           <div>
             Difficulty: {data.difficulty}
           </div>

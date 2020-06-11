@@ -1,0 +1,24 @@
+.player-header {
+  align-items: center;
+  background-color: grey;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.player-image {
+  border-radius: 112.5px;
+  height: 50px;
+  width: 50px;
+}
+
+.player-name {
+  font-family: Roboto, sans-serif;
+  font-size: 26px;
+  line-height: 30px;
+}
+
+.player-score {
+  font-family: Roboto, sans-serif;
+  font-size: 26px;
+  line-height: 30px;
+}
