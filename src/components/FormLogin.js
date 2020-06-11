@@ -17,7 +17,7 @@ class FormLogin extends Component {
 
   renderLabelInput(textLabel, type, id, name, dataTestid) {
     return (
-      <label>
+      <label htmlFor={id}>
         {textLabel}
         <input
           id={id}

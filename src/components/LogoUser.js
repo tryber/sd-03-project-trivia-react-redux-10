@@ -11,10 +11,10 @@ const LogoGravatar = ({ urlGravatar }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log( 'mapStateToPropslogoGravatar', state );
+  console.log('mapStateToPropslogoGravatar', state);
   return {
     urlGravatar: state.loginReducer.urlGravatar,
-  }
+  };
 };
 
 export default connect(mapStateToProps)(LogoGravatar);

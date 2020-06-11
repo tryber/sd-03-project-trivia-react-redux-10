@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 };
 
 const loginReducer = (state = INITIAL_STATE, action) => {
-  console.log('meu state movieReducer : ',state);
+  console.log('meu state movieReducer : ', state);
   switch (action.type) {
     case LOG_INTO:
       return {
@@ -18,7 +18,7 @@ const loginReducer = (state = INITIAL_STATE, action) => {
         name: action.name,
         emailGravatar: action.emailGravatar,
         urlGravatar: action.urlGravatar,
-      }
+      };
     default:
       return state;
   }
