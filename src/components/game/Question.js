@@ -4,6 +4,7 @@ import Alternatives from './Alternatives';
 class Question extends React.Component {
   render() {
     const { data } = this.props;
+    console.log(data);
     return (
       <div>
         <div className="header">
