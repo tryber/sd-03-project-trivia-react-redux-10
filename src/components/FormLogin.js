@@ -39,7 +39,7 @@ class FormLogin extends Component {
         dataTestid="btn-play"
         id="jogar"
         type="button"
-        onClick={(event) => log(this.state)}
+        onClick={() => log(this.state)}
       />
     );
   }
@@ -57,7 +57,7 @@ class FormLogin extends Component {
   render() {
     return (
       <div>
-          {this.renderForm()}
+        {this.renderForm()}
       </div>
     );
   }
@@ -65,6 +65,6 @@ class FormLogin extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   log: (login) => dispatch(logInto(login)),
-})
+});
 
 export default connect(null, mapDispatchToProps)(FormLogin);
