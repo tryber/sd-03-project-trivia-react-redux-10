@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logInto } from '../actions/login';
+import PropTypes from 'prop-types';
 
 class FormLogin extends Component {
   constructor() {
@@ -36,7 +37,7 @@ class FormLogin extends Component {
     return (
       <input
         value="jogar"
-        dataTestid="btn-play"
+        data-testid="btn-play"
         id="jogar"
         type="button"
         onClick={() => log(this.state)}
@@ -66,5 +67,9 @@ class FormLogin extends Component {
 const mapDispatchToProps = (dispatch) => ({
   log: (login) => dispatch(logInto(login)),
 });
+
+FormLogin.propTypes = {
+  log: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(FormLogin);
