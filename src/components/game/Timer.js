@@ -6,13 +6,19 @@ class Timer extends React.Component {
     this.state = {
       timer: 30,
     }
+    this.currentTimer = 0;
     this.startTimer = this.startTimer.bind(this)
   }
   componentDidMount() {
     this.startTimer();
   }
+  componentDidUpdate() {
+    if (this.state.timer === 0) {
+      clearTimeout(this.currentTimer);
+    }
+  }
   startTimer() {
-    this.timer = setInterval(() => this.setState({
+    this.currentTimer = setInterval(() => this.setState({
       timer: this.state.timer - 1,
     }), 1000);
   }
