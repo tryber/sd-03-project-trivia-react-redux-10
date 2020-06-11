@@ -10,47 +10,49 @@ class FormLogin extends Component {
       emailGravatar: '',
     };
   }
-
-updateLogin(field, newValue) {
-  this.setState({ [field]: newValue });
-}
   
-renderLabelInput(textLabel, type, id, name, dataTestid) {
- return (
-    <label>
-      {textLabel}
-      <input
-        id={id}
-        name={name}
-        type={type}
-        value={this.state[name]}
-        data-testid={dataTestid}
-        onChange={(event) => this.updateLogin(name, event.target.value)}
-      />
-    </label>
-  ); 
-}
+  updateLogin(field, newValue) {
+  this.setState({ [field]: newValue });
+  }
+  
+  renderLabelInput(textLabel, type, id, name, dataTestid) {
+  return (
+      <label>
+        {textLabel}
+        <input
+          id={id}
+          name={name}
+          type={type}
+          value={this.state[name]}
+          data-testid={dataTestid}
+          onChange={(event) => this.updateLogin(name, event.target.value)}
+        />
+      </label>
+    ); 
+  }
 
-renderButton() {
-  const { log } = this.props;
-   return( <input
-      value="jogar"
-      dataTestid="btn-play"
-      id="jogar"
-      type="button"
-      onClick={(event) => log(this.state)}
-    />
-  );
- }
- renderForm(){
-   return (
-      <form>
-        {this.renderLabelInput('insira o nome', 'text', 'name', 'name', 'input-player-name')}
-        {this.renderLabelInput('insira o email', 'email', 'email', 'emailGravatar', 'input-gravatar-email')}
-        {this.renderButton()}
-      </form>
-   );
- }
+  renderButton() {
+    const { log } = this.props;
+    return( <input
+        value="jogar"
+        dataTestid="btn-play"
+        id="jogar"
+        type="button"
+        onClick={(event) => log(this.state)}
+      />
+    );
+  }
+  
+  renderForm(){
+    return (
+        <form>
+          {this.renderLabelInput('insira o nome', 'text', 'name', 'name', 'input-player-name')}
+          {this.renderLabelInput('insira o email', 'email', 'email', 'emailGravatar', 'input-gravatar-email')}
+          {this.renderButton()}
+        </form>
+    );
+  }
+
   render() {
     return (
       <div>

@@ -8,5 +8,5 @@ export const logInto = (login) => {
     type: LOG_INTO,
     ...login,
     urlGravatar: cryptEmail(login.emailGravatar),
-  }
+  };
 };
