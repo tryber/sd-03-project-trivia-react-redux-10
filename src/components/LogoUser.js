@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const LogoGravatar = (props) => {
-    const { urlGravatar } = props;
+const LogoGravatar = ({ urlGravatar }) => {
     console.log(urlGravatar);
     return (
       <div>

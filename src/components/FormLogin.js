@@ -11,49 +11,51 @@ class FormLogin extends Component {
     };
   }
 
+updateLogin(field, newValue) {
+  this.setState({ [field]: newValue });
+}
+  
+renderLabelInput(textLabel, id, name) {
+ return (
+    <label>
+      {textLabel}
+      <input
+        id={id}
+        name={name}
+        type="text"
+        value={this.state[name]}
+        onChange={(event) => this.updateLogin(name, event.target.value)}
+      />
+    </label>
+  ); 
+}
+
+renderButton() {
+  const { log } = this.props;
+   return( <input
+      value="jogar"
+      id="jogar"
+      type="button"
+      onClick={(event) => log(this.state)}
+    />
+  );
+ }
   render() {
-    const { name, emailGravatar } = this.state;
-    const { log } = this.props;
     return (
       <div>
         <form>
-        <label className="active" htmlFor="movie_subtitle">email gravatar</label>
-        <input
-            placeholder="Insira o email"
-            id="email"
-            name="emailGravatar"
-            value={emailGravatar} 
-            type="text"
-            onChange={(event) => this.setState({ [event.target.name]: event.target.value })}
-          />
-        <label className="active" htmlFor="movie_subtitle">nome do jogador</label>
-        <input
-            placeholder="Insira o nome"
-            id="nome"
-            type="text"
-            value={name}
-            onChange={(event) => this.setState({ name: event.target.value })}
-          />
-        <input
-            value="jogar"
-            id="jogar"
-            type="button"
-            onClick={(event) => log(this.state)}
-          />
+          {this.renderLabelInput('insira o nome', 'name', 'name')}
+          {this.renderLabelInput('insira o email', 'email', 'emailGravatar')}
+          {this.renderButton()}
         </form>
+        
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log( 'mapStateToProps', state );
-  return {
-}
-};
-
 const mapDispatchToProps = (dispatch) => ({
   log: (login) => dispatch(logInto(login)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormLogin);
+export default connect(null, mapDispatchToProps)(FormLogin);
