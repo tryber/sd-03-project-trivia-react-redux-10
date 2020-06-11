@@ -10,13 +10,13 @@ class FormLogin extends Component {
       emailGravatar: '',
     };
   }
-  
+
   updateLogin(field, newValue) {
-  this.setState({ [field]: newValue });
+    this.setState({ [field]: newValue });
   }
-  
+
   renderLabelInput(textLabel, type, id, name, dataTestid) {
-  return (
+    return (
       <label>
         {textLabel}
         <input
@@ -28,12 +28,13 @@ class FormLogin extends Component {
           onChange={(event) => this.updateLogin(name, event.target.value)}
         />
       </label>
-    ); 
+    );
   }
 
   renderButton() {
     const { log } = this.props;
-    return( <input
+    return (
+      <input
         value="jogar"
         dataTestid="btn-play"
         id="jogar"
@@ -42,14 +43,14 @@ class FormLogin extends Component {
       />
     );
   }
-  
-  renderForm(){
+
+  renderForm() {
     return (
-        <form>
-          {this.renderLabelInput('insira o nome', 'text', 'name', 'name', 'input-player-name')}
-          {this.renderLabelInput('insira o email', 'email', 'email', 'emailGravatar', 'input-gravatar-email')}
-          {this.renderButton()}
-        </form>
+      <form>
+        {this.renderLabelInput('insira o nome', 'text', 'name', 'name', 'input-player-name')}
+        {this.renderLabelInput('insira o email', 'email', 'email', 'emailGravatar', 'input-gravatar-email')}
+        {this.renderButton()}
+      </form>
     );
   }
 
