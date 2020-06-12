@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Question from './Question';
 
 class QuestionLibrary extends React.Component {
@@ -25,6 +26,6 @@ class QuestionLibrary extends React.Component {
 
 QuestionLibrary.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-}
+};
 
 export default QuestionLibrary;

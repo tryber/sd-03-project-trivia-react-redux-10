@@ -13,8 +13,7 @@ class Alternatives extends React.Component {
     const { correct } = this.props;
     if (answered === correct) {
       alert('Alternativa correta!');
-    }
-    else {
+    } else {
       alert('Alternativa errada!');
     }
   }
@@ -27,8 +26,13 @@ class Alternatives extends React.Component {
     console.log(alternatives);
     return (
       <div>
-        { alternatives.map((alternative) =>
-            <button value={alternative} onClick={(e) => this.handleAnswer(e)} >{alternative}</button>) }
+        { alternatives.map((alternative) => (
+          <button
+            value={alternative}
+            onClick={(e) => this.handleAnswer(e)} >
+            {alternative}
+          </button>
+        ));}
       </div>
     );
   }
@@ -41,6 +45,6 @@ Alternatives.propTypes = {
     PropTypes.bool,
   ]).isRequired,
   incorrects: PropTypes.arrayOf(PropTypes.object).isRequired,
-}
+};
 
 export default Alternatives;
