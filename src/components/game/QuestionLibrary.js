@@ -1,18 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Question from './Question';
 
 class QuestionLibrary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      index: 0,
-    };
-  }
-
   render() {
-    const { index } = this.state;
-    const { data } = this.props;
+    const { data, index } = this.props;
+    if (index === 5) return <h2> Jogo terminado, parabéns! </h2>
     return (
       <div>
         <h2>QuestionLibrary component</h2>
@@ -24,8 +18,17 @@ class QuestionLibrary extends React.Component {
 
 }
 
+const mapStateToProps = (state) => ({
+  index: state.alternatives.index,
+});
+
 QuestionLibrary.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  index: PropTypes.number,
 };
 
-export default QuestionLibrary;
+QuestionLibrary.defaultProps = {
+  index: 0,
+};
+
+export default connect(mapStateToProps)(QuestionLibrary);

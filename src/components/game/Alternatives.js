@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { questionAnswered, correctAnswer, incorrectAnswer } from '../../actions/alternativesActions';
 
 class Alternatives extends React.Component {
   constructor(props) {
@@ -10,20 +12,18 @@ class Alternatives extends React.Component {
 
   handleAnswer(e) {
     const answered = e.target.value;
-    const { correct } = this.props;
+    const { correct, questionAnswered, correctAnswer, incorrectAnswer } = this.props;
+    questionAnswered(1);
     if (answered === correct) {
-      alert('Alternativa correta!');
+      correctAnswer();
     } else {
-      alert('Alternativa errada!');
+      incorrectAnswer();
     }
   }
 
   render() {
     const { correct, incorrects } = this.props;
     const alternatives = [correct, ...incorrects];
-    console.log(correct);
-    console.log(incorrects);
-    console.log(alternatives);
     return (
       <div>
         { alternatives.map((alternative) => (
@@ -39,13 +39,19 @@ class Alternatives extends React.Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  questionAnswered: (index) => dispatch(questionAnswered(index)),
+  correctAnswer: () => dispatch(correctAnswer()),
+  incorrectAnswer: () => dispatch(incorrectAnswer()),
+});
+
 Alternatives.propTypes = {
   correct: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
   ]).isRequired,
-  incorrects: PropTypes.arrayOf(PropTypes.object).isRequired,
+  incorrects: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
-export default Alternatives;
+export default connect(null, mapDispatchToProps)(Alternatives);
