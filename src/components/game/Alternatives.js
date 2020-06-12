@@ -32,7 +32,7 @@ class Alternatives extends React.Component {
             onClick={(e) => this.handleAnswer(e)} >
             {alternative}
           </button>
-        ));}
+        ))}
       </div>
     );
   }
