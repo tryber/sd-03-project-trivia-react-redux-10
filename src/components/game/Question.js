@@ -26,7 +26,7 @@ class Question extends React.Component {
 }
 
 Question.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default Question;
