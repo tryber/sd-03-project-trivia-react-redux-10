@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { fetchTriviaApi, fetchToken } from '../actions';
 import QuestionLibrary from '../components/game/QuestionLibrary';
 
-class Questions extends React.Component {
+class Game extends React.Component {
 
   componentDidMount() {
     const { getToken, getTrivia } = this.props;
@@ -18,8 +18,8 @@ class Questions extends React.Component {
     if (loading) return <p> Loading... </p>;
     return (
       <div>
-        <h2> Questions page </h2>
-        <QuestionLibrary data={data}/>
+        <h2> Game page </h2>
+        <QuestionLibrary data={data} />
       </div>
     );
   }
@@ -35,11 +35,11 @@ const mapStateToProps = (state) => ({
   loading: state.triviaApi.loading,
 });
 
-Questions.propTypes = {
+Game.propTypes = {
   loading: PropTypes.bool.isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   getToken: PropTypes.func.isRequired,
   getTrivia: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Questions);
+export default connect(mapStateToProps, mapDispatchToProps)(Game);
