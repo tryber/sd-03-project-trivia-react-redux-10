@@ -6,7 +6,7 @@ import Question from './Question';
 class QuestionLibrary extends React.Component {
   render() {
     const { data, index } = this.props;
-    if (index === 5) return <h2> Jogo terminado, parabéns! </h2>
+    if (index === 5) return <h2> Jogo terminado, parabéns! </h2>;
     return (
       <div>
         <h2>QuestionLibrary component</h2>

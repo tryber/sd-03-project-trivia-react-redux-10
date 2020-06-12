@@ -12,12 +12,12 @@ class Alternatives extends React.Component {
 
   handleAnswer(e) {
     const answered = e.target.value;
-    const { correct, questionAnswered, correctAnswer, incorrectAnswer } = this.props;
-    questionAnswered(1);
+    const { correct, propQuestionAnswered, propCorrectAnswer, propIncorrectAnswer } = this.props;
+    propQuestionAnswered(1);
     if (answered === correct) {
-      correctAnswer();
+      propCorrectAnswer();
     } else {
-      incorrectAnswer();
+      propIncorrectAnswer();
     }
   }
 
@@ -27,12 +27,14 @@ class Alternatives extends React.Component {
     return (
       <div>
         { alternatives.map((alternative) => (
-          <button
-            value={alternative}
-            onClick={(e) => this.handleAnswer(e)}
-          >
-            {alternative}
-          </button>
+          <div key={alternative}>
+            <button
+              value={alternative}
+              onClick={(e) => this.handleAnswer(e)}
+            >
+              {alternative}
+            </button>
+          </div>
         ))}
       </div>
     );
@@ -40,9 +42,9 @@ class Alternatives extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  questionAnswered: (index) => dispatch(questionAnswered(index)),
-  correctAnswer: () => dispatch(correctAnswer()),
-  incorrectAnswer: () => dispatch(incorrectAnswer()),
+  propQuestionAnswered: (index) => dispatch(questionAnswered(index)),
+  propCorrectAnswer: () => dispatch(correctAnswer()),
+  propIncorrectAnswer: () => dispatch(incorrectAnswer()),
 });
 
 Alternatives.propTypes = {
@@ -52,6 +54,9 @@ Alternatives.propTypes = {
     PropTypes.bool,
   ]).isRequired,
   incorrects: PropTypes.arrayOf(PropTypes.any).isRequired,
+  propQuestionAnswered: PropTypes.func.isRequired,
+  propCorrectAnswer: PropTypes.func.isRequired,
+  propIncorrectAnswer: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Alternatives);
