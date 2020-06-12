@@ -29,7 +29,8 @@ class Alternatives extends React.Component {
         { alternatives.map((alternative) => (
           <button
             value={alternative}
-            onClick={(e) => this.handleAnswer(e)} >
+            onClick={(e) => this.handleAnswer(e)}
+          >
             {alternative}
           </button>
         ))}
