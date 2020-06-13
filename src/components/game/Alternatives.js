@@ -12,8 +12,7 @@ class Alternatives extends React.Component {
 
   handleAnswer(e) {
     const answered = e.target.value;
-    const { correct, propQuestionAnswered, propCorrectAnswer, propIncorrectAnswer } = this.props;
-    propQuestionAnswered(1);
+    const { correct, propCorrectAnswer, propIncorrectAnswer } = this.props;
     if (answered === correct) {
       propCorrectAnswer();
     } else {

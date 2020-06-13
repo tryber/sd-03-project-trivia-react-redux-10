@@ -8,14 +8,17 @@ export const questionAnswered = (index) => ({
   type: QUESTION_ASWERED,
   loading: true,
   index,
+  notAnswered: true,
 });
 
 export const correctAnswer = () => ({
   type: CORRECT_ANSWER,
   loading: false,
+  notAnswered: false,
 });
 
 export const incorrectAnswer = () => ({
   type: INCORRECT_ANSWER,
   loading: false,
+  notAnswered: false,
 });
