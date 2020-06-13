@@ -24,12 +24,12 @@ class QuestionLibrary extends React.Component {
         <h4>Question number {index + 1} </h4>
         <Question data={data[index]} />
         <div>
-        <button
-          onClick={() => this.nextQuestion()}
-          disabled = {notAnswered}
-        >
-          Next Question
-        </button>
+          <button
+            onClick={() => this.nextQuestion()}
+            disabled={notAnswered}
+          >
+            Next Question
+          </button>
         </div>
       </div>
     );
@@ -49,6 +49,8 @@ const mapDispatchToProps = (dispatch) => ({
 QuestionLibrary.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   index: PropTypes.number,
+  propQuestionAnswered: PropTypes.func.isRequired,
+  notAnswered: PropTypes.bool.isRequired,
 };
 
 QuestionLibrary.defaultProps = {

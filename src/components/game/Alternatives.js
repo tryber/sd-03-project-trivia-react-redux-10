@@ -41,7 +41,6 @@ class Alternatives extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  propQuestionAnswered: (index) => dispatch(questionAnswered(index)),
   propCorrectAnswer: () => dispatch(correctAnswer()),
   propIncorrectAnswer: () => dispatch(incorrectAnswer()),
 });
@@ -53,7 +52,6 @@ Alternatives.propTypes = {
     PropTypes.bool,
   ]).isRequired,
   incorrects: PropTypes.arrayOf(PropTypes.any).isRequired,
-  propQuestionAnswered: PropTypes.func.isRequired,
   propCorrectAnswer: PropTypes.func.isRequired,
   propIncorrectAnswer: PropTypes.func.isRequired,
 };
