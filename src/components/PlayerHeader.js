@@ -19,7 +19,7 @@ class PlayerHeader extends React.Component {
         <p data-testid="header-player-name" className="player-name">Jogador: {player.name}</p>
         <p data-testid="header-score" className="player-score">Pontos: {score}</p>
       </div>
-    )
+    );
   }
 }
 

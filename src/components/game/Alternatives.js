@@ -65,16 +65,16 @@ class Alternatives extends React.Component {
               >{alternative}</button>
             </div>
           ) : (
-              <div key={alternative}>
-                <button
-                  data-testid={`wrong-answer-${index}`}
-                  className={notAnswered ? '' : 'wrong'}
-                  value={alternative}
-                  disabled={!notAnswered}
-                  onClick={(e) => this.handleAnswer(e)}
-                >{alternative}</button>
-              </div>
-            )
+            <div key={alternative}>
+              <button
+                data-testid={`wrong-answer-${index}`}
+                className={notAnswered ? '' : 'wrong'}
+                value={alternative}
+                disabled={!notAnswered}
+                onClick={(e) => this.handleAnswer(e)}
+              >{alternative}</button>
+            </div>
+            ),
           )}
       </div>
     );

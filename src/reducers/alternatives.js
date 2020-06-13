@@ -17,16 +17,16 @@ const questionAnswered = (state = INITIAL_STATE, action) => {
     case QUESTION_ASWERED:
       return { ...state, loading: action.loading };
     case CORRECT_ANSWER:
-      return { 
+      return {
         ...state,
         loading: action.loading,
         disable: true,
-        score: state.score + action.score
+        score: state.score + action.score,
       };
     case INCORRECT_ANSWER:
       return { ...state, loading: action.loading, disable: true };
     case NEXT_QUESTION:
-      return {...state, index: state.index + action.index, disable: false }
+      return { ...state, index: state.index + action.index, disable: false };
     default:
       return state;
   }
