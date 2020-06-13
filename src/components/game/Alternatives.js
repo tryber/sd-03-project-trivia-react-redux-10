@@ -9,7 +9,6 @@ class Alternatives extends React.Component {
     this.handleAnswer = this.handleAnswer.bind(this);
   }
 
-
   handleAnswer(e) {
     const answered = e.target.value;
     const { correct, propCorrectAnswer, propIncorrectAnswer } = this.props;
@@ -20,25 +19,54 @@ class Alternatives extends React.Component {
     }
   }
 
+  shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   render() {
-    const { correct, incorrects } = this.props;
+    const { correct, incorrects, notAnswered } = this.props;
     const alternatives = [correct, ...incorrects];
     return (
       <div>
-        { alternatives.map((alternative) => (
+        { alternatives
+          .map((alternative, index) => (alternative === correct) ? (
           <div key={alternative}>
             <button
+              data-testid='correct-answer'
+              className={notAnswered ? '' : 'correct'}
               value={alternative}
+              disabled={!notAnswered}
               onClick={(e) => this.handleAnswer(e)}
             >
               {alternative}
             </button>
           </div>
-        ))}
+        ) : (
+          <div key={alternative}>
+            <button
+              data-testid={`wrong-answer-${index}`}
+              className={notAnswered ? '' : 'wrong'}
+              value={alternative}
+              disabled={!notAnswered}
+              onClick={(e) => this.handleAnswer(e)}
+            >
+              {alternative}
+            </button>
+          </div>
+        )
+        ) }
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  notAnswered: state.alternatives.notAnswered,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   propCorrectAnswer: () => dispatch(correctAnswer()),
@@ -56,4 +84,4 @@ Alternatives.propTypes = {
   propIncorrectAnswer: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Alternatives);
+export default connect(mapStateToProps, mapDispatchToProps)(Alternatives);
