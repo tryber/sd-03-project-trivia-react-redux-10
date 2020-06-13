@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { questionAnswered, correctAnswer, incorrectAnswer } from '../../actions/alternativesActions';
 
 class Alternatives extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.handleAnswer = this.handleAnswer.bind(this);
   }
@@ -9,27 +12,51 @@ class Alternatives extends React.Component {
 
   handleAnswer(e) {
     const answered = e.target.value;
-    const { correct } = this.props;
-    if(answered === correct){
-      alert('Alternativa correta!');
-    }
-    else {
-      alert('Alternativa errada!');
+    const { correct, propQuestionAnswered, propCorrectAnswer, propIncorrectAnswer } = this.props;
+    propQuestionAnswered(1);
+    if (answered === correct) {
+      propCorrectAnswer();
+    } else {
+      propIncorrectAnswer();
     }
   }
 
   render() {
     const { correct, incorrects } = this.props;
-    const alternatives = [correct, ...incorrects]
-    console.log(correct);
-    console.log(incorrects);
-    console.log(alternatives);
+    const alternatives = [correct, ...incorrects];
     return (
       <div>
-        { alternatives.map((alternative) => <button value={alternative} onClick={(e) => this.handleAnswer(e)} >{alternative}</button>) }
+        { alternatives.map((alternative) => (
+          <div key={alternative}>
+            <button
+              value={alternative}
+              onClick={(e) => this.handleAnswer(e)}
+            >
+              {alternative}
+            </button>
+          </div>
+        ))}
       </div>
     );
   }
 }
 
-export default Alternatives;
+const mapDispatchToProps = (dispatch) => ({
+  propQuestionAnswered: (index) => dispatch(questionAnswered(index)),
+  propCorrectAnswer: () => dispatch(correctAnswer()),
+  propIncorrectAnswer: () => dispatch(incorrectAnswer()),
+});
+
+Alternatives.propTypes = {
+  correct: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+  ]).isRequired,
+  incorrects: PropTypes.arrayOf(PropTypes.any).isRequired,
+  propQuestionAnswered: PropTypes.func.isRequired,
+  propCorrectAnswer: PropTypes.func.isRequired,
+  propIncorrectAnswer: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(Alternatives);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Alternatives from './Alternatives';
 import Timer from './Timer';
 
@@ -25,5 +26,9 @@ class Question extends React.Component {
     );
   }
 }
+
+Question.propTypes = {
+  data: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default Question;
