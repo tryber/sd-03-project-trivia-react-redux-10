@@ -6,14 +6,20 @@ import { incorrectAnswer } from '../../actions/alternativesActions';
 
 class Timer extends React.Component {
   componentDidMount() {
-    const timerID = setInterval(() => this.props.propchangeTimer(), 1000);
-    this.props.propstartTimer(timerID)
+    const { propchangeTimer, propstartTimer } = this.props;
+    const timerID = setInterval(() => propchangeTimer(), 1000);
+    propstartTimer(timerID);
   }
 
   componentDidUpdate() {
-    if (this.props.time === 0) {
-      clearInterval(this.props.id);
-      this.props.propIncorrectAnswer();
+    const { time, id, propIncorrectAnswer, propchangeTimer, propstartTimer } = this.props;
+    if (time === 0) {
+      clearInterval(id);
+      propIncorrectAnswer();
+    }
+    if (id === null) {
+      const timerID = setInterval(() => propchangeTimer(), 1000);
+      propstartTimer(timerID);
     }
   }
 

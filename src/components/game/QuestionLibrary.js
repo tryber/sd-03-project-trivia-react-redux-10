@@ -16,21 +16,12 @@ class QuestionLibrary extends React.Component {
   }
 
   render() {
-    const { data, index, notAnswered } = this.props;
-    if (index === 5) return <h2> Jogo terminado, parabéns! </h2>;
+    const { data, index } = this.props;
     return (
       <div>
         <h2>QuestionLibrary component</h2>
         <h4>Question number {index + 1} </h4>
         <Question data={data[index]} />
-        <div>
-          <button
-            onClick={() => this.nextQuestion()}
-            disabled={notAnswered}
-          >
-            Next Question
-          </button>
-        </div>
       </div>
     );
   }
@@ -39,7 +30,6 @@ class QuestionLibrary extends React.Component {
 
 const mapStateToProps = (state) => ({
   index: state.alternatives.index,
-  notAnswered: state.alternatives.notAnswered,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -50,7 +40,6 @@ QuestionLibrary.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   index: PropTypes.number,
   propQuestionAnswered: PropTypes.func.isRequired,
-  notAnswered: PropTypes.bool.isRequired,
 };
 
 QuestionLibrary.defaultProps = {

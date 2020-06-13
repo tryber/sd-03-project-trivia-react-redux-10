@@ -9,6 +9,7 @@ const INITIAL_STATE = {
   loading: true,
   index: 0,
   disable: false,
+  score: 0,
 };
 
 const questionAnswered = (state = INITIAL_STATE, action) => {
@@ -16,11 +17,11 @@ const questionAnswered = (state = INITIAL_STATE, action) => {
     case QUESTION_ASWERED:
       return { ...state, loading: action.loading };
     case CORRECT_ANSWER:
-      return { ...state, loading: action.loading, disable: true  };
+      return { ...state, loading: action.loading, disable: true, score: state.score + action.score };
     case INCORRECT_ANSWER:
       return { ...state, loading: action.loading, disable: true };
     case NEXT_QUESTION:
-      return {...state, index: state.index + action.index }
+      return {...state, index: state.index + action.index, disable: false }
     default:
       return state;
   }

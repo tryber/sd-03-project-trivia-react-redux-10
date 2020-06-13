@@ -16,6 +16,13 @@ class Game extends React.Component {
   }
 
   render() {
+    const player = {
+      name: 'Leticia',
+      assertions: 0,
+      score: 0,
+      gravatarEmail: 'leticia.duarte.lima@gmail.com',
+    };
+    localStorage.setItem('state', JSON.stringify(player));
     const { data, loading } = this.props;
     if (loading) return <p> Loading... </p>;
     return (
@@ -23,7 +30,6 @@ class Game extends React.Component {
         <h2> Game page </h2>
         <PlayerHeader />
         <QuestionLibrary data={data} />
-
       </div>
     );
   }

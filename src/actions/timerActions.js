@@ -16,5 +16,4 @@ export const changeTimer = () => ({
 export const resetTimer = () => ({
   type: RESET_TIMER,
   time: 30,
-  isOn: false,
 });
