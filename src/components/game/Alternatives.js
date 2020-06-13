@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { questionAnswered, correctAnswer, incorrectAnswer } from '../../actions/alternativesActions';
+import { correctAnswer, incorrectAnswer } from '../../actions/alternativesActions';
 
 class Alternatives extends React.Component {
   constructor(props) {
