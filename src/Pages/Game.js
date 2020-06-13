@@ -6,11 +6,12 @@ import QuestionLibrary from '../components/game/QuestionLibrary';
 
 class Game extends React.Component {
 
-  componentDidMount() {
+  async componentDidMount() {
     const { getToken, getTrivia } = this.props;
-    getToken()
-      .then(({ token }) => localStorage.setItem('token', token.token))
-      .then(getTrivia(localStorage.getItem('token')));
+    await getToken()
+      .then(({ token }) => localStorage.setItem('token', token.token));
+
+    await getTrivia(localStorage.getItem('token'));
   }
 
   render() {
