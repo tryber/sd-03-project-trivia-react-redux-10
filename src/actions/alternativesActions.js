@@ -9,17 +9,20 @@ export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const questionAnswered = () => ({
   type: QUESTION_ASWERED,
   loading: true,
+  notAnswered: true,
 });
 
 export const correctAnswer = (score) => ({
   type: CORRECT_ANSWER,
   loading: false,
+  notAnswered: false,
   score,
 });
 
 export const incorrectAnswer = () => ({
   type: INCORRECT_ANSWER,
   loading: false,
+  notAnswered: false,
 });
 
 export const nextQuestion = (index) => ({

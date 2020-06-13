@@ -44,7 +44,7 @@ class Question extends React.Component {
           && index !== 4
           && <button data-testid="btn-next" onClick={() => this.handleClick()}>Próxima</button>
         }
-        {propDisable && index === 4 && <button data-testid='btn-next'><Link to={'/feedback'}>Próxima</Link></button>}
+        {propDisable && index === 4 && <button data-testid="btn-next"><Link to={'/feedback'}>Próxima</Link></button>}
       </div>
     );
   }
