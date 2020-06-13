@@ -25,16 +25,16 @@ class Timer extends React.Component {
 
   render() {
     const { time } = this.props;
-    return(
+    return (
         <p>Tempo: {time}</p>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
   time: state.timer.time,
   id: state.timer.id,
-}); 
+});
 
 const mapDispatchToProps = (dispatch) => ({
   propstartTimer: (id) => dispatch(startTimer(id)),

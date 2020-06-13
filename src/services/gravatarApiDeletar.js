@@ -1,4 +1,5 @@
 import { MD5 } from 'crypto-js';
+
 const GRAVATAR_API = 'https://www.gravatar.com/avatar/';
 
 const cryptEmail = (email) =>

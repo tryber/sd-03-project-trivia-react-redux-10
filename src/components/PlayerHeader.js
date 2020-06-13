@@ -10,25 +10,25 @@ class PlayerHeader extends React.Component {
     const player = JSON.parse(localStorage.getItem('state'));
     return (
       <div className="player-header">
-        <img 
-          data-testid="header-profile-picture" 
-          src={cryptEmail(player.gravatarEmail)} 
+        <img
+          data-testid="header-profile-picture"
+          src={cryptEmail(player.gravatarEmail)}
           alt="Player"
           className="player-image"
         />
         <p data-testid="header-player-name" className="player-name">Jogador: {player.name}</p>
         <p data-testid="header-score" className="player-score">Pontos: {score}</p>
-      </div>      
+      </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
   score: state.alternatives.score,
-}); 
+});
 
 PlayerHeader.propTypes = {
   score: PropTypes.number.isRequired,
-}
+};
 
 export default connect(mapStateToProps)(PlayerHeader);

@@ -9,20 +9,20 @@ class Alternatives extends React.Component {
     this.handleAnswer = this.handleAnswer.bind(this);
     this.newScore = this.newScore.bind(this);
   }
-  
+
   newScore() {
     const { difficulty, time } = this.props;
     const player = JSON.parse(localStorage.getItem('state'));
     let newScore = 0;
-    if (difficulty === 'hard') newScore =  10 + (time * 3);
+    if (difficulty === 'hard') newScore = 10 + (time * 3);
     if (difficulty === 'medium') newScore = 10 + (time * 2);
     if (difficulty === 'easy') newScore = 10 + time;
-    let updatePlayer = {
+    const updatePlayer = {
       name: player.name,
       assertions: player.assertions + 1,
       score: player.score + newScore,
       gravatarEmail: 'leticia.duarte.lima@gmail.com',
-    }
+    };
     localStorage.setItem('state', JSON.stringify(updatePlayer));
     return newScore;
   }
@@ -42,8 +42,8 @@ class Alternatives extends React.Component {
 
   shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
   }
@@ -53,33 +53,29 @@ class Alternatives extends React.Component {
     const alternatives = [correct, ...incorrects];
     return (
       <div>
-        { alternatives
+        {alternatives
           .map((alternative, index) => (alternative === correct) ? (
-          <div key={alternative}>
-            <button
-              data-testid='correct-answer'
-              className={notAnswered ? '' : 'correct'}
-              value={alternative}
-              disabled={!notAnswered}
-              onClick={(e) => this.handleAnswer(e)}
-            >
-              {alternative}
-            </button>
-          </div>
-        ) : (
-          <div key={alternative}>
-            <button
-              data-testid={`wrong-answer-${index}`}
-              className={notAnswered ? '' : 'wrong'}
-              value={alternative}
-              disabled={!notAnswered}
-              onClick={(e) => this.handleAnswer(e)}
-            >
-              {alternative}
-            </button>
-          </div>
-        )
-        ) }
+            <div key={alternative}>
+              <button
+                data-testid="correct-answer"
+                className={notAnswered ? '' : 'correct'}
+                value={alternative}
+                disabled={!notAnswered}
+                onClick={(e) => this.handleAnswer(e)}
+              >{alternative}</button>
+            </div>
+          ) : (
+              <div key={alternative}>
+                <button
+                  data-testid={`wrong-answer-${index}`}
+                  className={notAnswered ? '' : 'wrong'}
+                  value={alternative}
+                  disabled={!notAnswered}
+                  onClick={(e) => this.handleAnswer(e)}
+                >{alternative}</button>
+              </div>
+            )
+          )}
       </div>
     );
   }
@@ -89,8 +85,8 @@ const mapStateToProps = (state) => ({
   time: state.timer.time,
   id: state.timer.id,
   notAnswered: state.alternatives.notAnswered,
-}); 
-  
+});
+
 const mapDispatchToProps = (dispatch) => ({
   propQuestionAnswered: () => dispatch(questionAnswered()),
   propCorrectAnswer: (score) => dispatch(correctAnswer(score)),
@@ -109,6 +105,7 @@ Alternatives.propTypes = {
   propIncorrectAnswer: PropTypes.func.isRequired,
   id: PropTypes.number,
   time: PropTypes.number.isRequired,
+  notAnswered: PropTypes.bool.isRequired,
 };
 
 Alternatives.defaultProps = {

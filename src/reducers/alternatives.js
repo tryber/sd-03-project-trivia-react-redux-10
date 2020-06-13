@@ -2,7 +2,7 @@ import {
   QUESTION_ASWERED,
   CORRECT_ANSWER,
   INCORRECT_ANSWER,
-  NEXT_QUESTION
+  NEXT_QUESTION,
 } from '../actions/alternativesActions';
 
 const INITIAL_STATE = {
@@ -17,7 +17,12 @@ const questionAnswered = (state = INITIAL_STATE, action) => {
     case QUESTION_ASWERED:
       return { ...state, loading: action.loading };
     case CORRECT_ANSWER:
-      return { ...state, loading: action.loading, disable: true, score: state.score + action.score };
+      return { 
+        ...state,
+        loading: action.loading,
+        disable: true,
+        score: state.score + action.score
+      };
     case INCORRECT_ANSWER:
       return { ...state, loading: action.loading, disable: true };
     case NEXT_QUESTION:

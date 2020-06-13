@@ -22,7 +22,7 @@ class Question extends React.Component {
     console.log(data);
     return (
       <div>
-       <div className="header">
+        <div className="header">
           <div>
             Difficulty: <h5>{data.difficulty}</h5>
           </div>
@@ -32,14 +32,18 @@ class Question extends React.Component {
         </div>
         <h3 data-testid="question-text">{data.question}</h3>
         <div>
-          <Alternatives 
-            correct={data.correct_answer} 
+          <Alternatives
+            correct={data.correct_answer}
             incorrects={data.incorrect_answers}
             difficulty={data.difficulty}
           />
         </div>
         <Timer />
-        {propDisable && index !== 4 && <button data-testid="btn-next" onClick={() => this.handleClick()}>Próxima</button>}
+        {
+          propDisable 
+          && index !== 4 
+          && <button data-testid="btn-next" onClick={() => this.handleClick()}>Próxima</button>
+        }
         {propDisable && index === 4 && <button data-testid="btn-next"><Link to={`/feedback`}>Próxima</Link></button>}
       </div>
     );
