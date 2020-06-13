@@ -21,13 +21,13 @@ class Question extends React.Component {
       <div>
        <div className="header">
           <div>
-            Difficulty: {data.difficulty}
+            Difficulty: <h5>{data.difficulty}</h5>
           </div>
           <div>
-            Category: {data.category}
+            Category: <h5 data-testid="question-category">{data.category}</h5>
           </div>
         </div>
-        <h3>{data.question}</h3>
+        <h3 data-testid="question-text">{data.question}</h3>
         <div>
           <Alternatives correct={data.correct_answer} incorrects={data.incorrect_answers} />
         </div>

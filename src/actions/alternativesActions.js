@@ -14,11 +14,13 @@ export const questionAnswered = () => ({
 export const correctAnswer = () => ({
   type: CORRECT_ANSWER,
   loading: false,
+  notAnswered: false,
 });
 
 export const incorrectAnswer = () => ({
   type: INCORRECT_ANSWER,
   loading: false,
+  notAnswered: false,
 });
 
 export const nextQuestion = (index) => ({

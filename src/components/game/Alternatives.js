@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { questionAnswered, correctAnswer, incorrectAnswer } from '../../actions/alternativesActions';
+import { correctAnswer, incorrectAnswer } from '../../actions/alternativesActions';
 
 class Alternatives extends React.Component {
   constructor(props) {
@@ -12,8 +12,7 @@ class Alternatives extends React.Component {
 
   handleAnswer(e) {
     const answered = e.target.value;
-    const { correct, propQuestionAnswered, propCorrectAnswer, propIncorrectAnswer } = this.props;
-    propQuestionAnswered(1);
+    const { correct, propCorrectAnswer, propIncorrectAnswer } = this.props;
     if (answered === correct) {
       propCorrectAnswer();
       clearInterval(this.props.id);
@@ -60,7 +59,6 @@ Alternatives.propTypes = {
     PropTypes.bool,
   ]).isRequired,
   incorrects: PropTypes.arrayOf(PropTypes.any).isRequired,
-  propQuestionAnswered: PropTypes.func.isRequired,
   propCorrectAnswer: PropTypes.func.isRequired,
   propIncorrectAnswer: PropTypes.func.isRequired,
   id: PropTypes.number,
