@@ -16,8 +16,10 @@ class Alternatives extends React.Component {
     propQuestionAnswered(1);
     if (answered === correct) {
       propCorrectAnswer();
+      clearInterval(this.props.id);
     } else {
       propIncorrectAnswer();
+      clearInterval(this.props.id);
     }
   }
 
@@ -41,8 +43,12 @@ class Alternatives extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  id: state.timer.id,
+}); 
+
 const mapDispatchToProps = (dispatch) => ({
-  propQuestionAnswered: (index) => dispatch(questionAnswered(index)),
+  propQuestionAnswered: () => dispatch(questionAnswered()),
   propCorrectAnswer: () => dispatch(correctAnswer()),
   propIncorrectAnswer: () => dispatch(incorrectAnswer()),
 });
@@ -57,6 +63,11 @@ Alternatives.propTypes = {
   propQuestionAnswered: PropTypes.func.isRequired,
   propCorrectAnswer: PropTypes.func.isRequired,
   propIncorrectAnswer: PropTypes.func.isRequired,
+  id: PropTypes.number,
 };
 
-export default connect(null, mapDispatchToProps)(Alternatives);
+Alternatives.defaultProps = {
+  id: null,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Alternatives);

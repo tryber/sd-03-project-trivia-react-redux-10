@@ -4,10 +4,11 @@ export const CORRECT_ANSWER = 'CORRECT_ANSWER';
 
 export const INCORRECT_ANSWER = 'INCORRECT_ANSWER';
 
-export const questionAnswered = (index) => ({
+export const NEXT_QUESTION = 'NEXT_QUESTION';
+
+export const questionAnswered = () => ({
   type: QUESTION_ASWERED,
   loading: true,
-  index,
 });
 
 export const correctAnswer = () => ({
@@ -18,4 +19,9 @@ export const correctAnswer = () => ({
 export const incorrectAnswer = () => ({
   type: INCORRECT_ANSWER,
   loading: false,
+});
+
+export const nextQuestion = (index) => ({
+  type: NEXT_QUESTION,
+  index,
 });
