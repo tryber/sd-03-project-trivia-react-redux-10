@@ -19,44 +19,32 @@ class Alternatives extends React.Component {
     }
   }
 
-  shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
-
   render() {
     const { correct, incorrects, notAnswered } = this.props;
     const alternatives = [correct, ...incorrects];
     return (
       <div>
         { alternatives
-          .map((alternative, index) => (alternative === correct) ? (
-          <div key={alternative}>
+          .map((alternative, index) => alternative === correct ? (
             <button
-              data-testid='correct-answer'
+              key={alternative}
+              data-testid="correct-answer"
               className={notAnswered ? '' : 'correct'}
-              value={alternative}
               disabled={!notAnswered}
               onClick={(e) => this.handleAnswer(e)}
             >
               {alternative}
             </button>
-          </div>
         ) : (
-          <div key={alternative}>
             <button
+              key={alternative}
               data-testid={`wrong-answer-${index}`}
               className={notAnswered ? '' : 'wrong'}
-              value={alternative}
               disabled={!notAnswered}
               onClick={(e) => this.handleAnswer(e)}
             >
               {alternative}
             </button>
-          </div>
         )
         ) }
       </div>
@@ -82,6 +70,7 @@ Alternatives.propTypes = {
   incorrects: PropTypes.arrayOf(PropTypes.any).isRequired,
   propCorrectAnswer: PropTypes.func.isRequired,
   propIncorrectAnswer: PropTypes.func.isRequired,
+  notAnswered: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Alternatives);
