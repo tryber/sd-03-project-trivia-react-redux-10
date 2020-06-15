@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import cryptEmail from '../services/gravatarApiDeletar';
+import cryptEmail from '../services/cryptoGravatarAPI';
 import './PlayerHeader.css';
 
 class PlayerHeader extends React.Component {

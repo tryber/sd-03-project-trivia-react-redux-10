@@ -21,7 +21,7 @@ class Alternatives extends React.Component {
       name: player.name,
       assertions: player.assertions + 1,
       score: player.score + newScore,
-      gravatarEmail: 'leticia.duarte.lima@gmail.com',
+      gravatarEmail: player.gravatarEmail,
     };
     localStorage.setItem('state', JSON.stringify(updatePlayer));
     return newScore;
@@ -51,9 +51,8 @@ class Alternatives extends React.Component {
             className={!propDisable ? '' : 'correct'}
             disabled={propDisable}
             onClick={(e) => this.handleAnswer(e)}
-          >
-            {alternative}
-          </button>
+            value={alternative}
+          >{alternative}</button>
         ) : (
           <button
             key={alternative}
@@ -61,9 +60,8 @@ class Alternatives extends React.Component {
             className={!propDisable ? '' : 'wrong'}
             disabled={propDisable}
             onClick={(e) => this.handleAnswer(e)}
-          >
-            {alternative}
-          </button>
+            value={alternative}
+          >{alternative}</button>
         ))) }
       </div>
     );

@@ -5,12 +5,10 @@ import Game from './Pages/Game';
 import Feedback from './Pages/Feedback';
 import Ranking from './Pages/Ranking';
 import Settings from './Pages/Settings';
-import cryptEmail from './services/cryptoGravatarAPI';
 
 import './App.css';
 
 function App() {
-  console.log(cryptEmail());
   return (
     <div className="App">
       <Router>

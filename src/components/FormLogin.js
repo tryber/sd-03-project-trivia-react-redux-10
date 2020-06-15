@@ -13,6 +13,7 @@ class FormLogin extends Component {
       emailGravatar: '',
       redirect: false,
     };
+    this.playerLocalStorage=this.playerLocalStorage.bind(this);
   }
 
   updateLogin(field, newValue) {
@@ -53,7 +54,18 @@ class FormLogin extends Component {
     );
   }
 
+  playerLocalStorage() {
+    const player = {
+      name: this.state.name,
+      assertions: 0,
+      score: 0,
+      gravatarEmail: this.state.emailGravatar,
+    };
+    localStorage.setItem('state', JSON.stringify(player));
+  }
+
   async loginAndGetToken() {
+    this.playerLocalStorage();
     const { getToken, log } = this.props;
     await getToken()
       .then(({ token }) => localStorage.setItem('token', token.token))
@@ -63,7 +75,6 @@ class FormLogin extends Component {
   }
 
   renderButtonSettings() {
-    console.log(this.props);
     return (
       <input
         value="configurações"

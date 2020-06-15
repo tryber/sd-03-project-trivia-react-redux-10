@@ -13,13 +13,6 @@ class Game extends React.Component {
   }
 
   render() {
-    const player = {
-      name: 'Leticia',
-      assertions: 0,
-      score: 0,
-      gravatarEmail: 'leticia.duarte.lima@gmail.com',
-    };
-    localStorage.setItem('state', JSON.stringify(player));
     const { data, loading } = this.props;
     if (loading) return <p> Loading... </p>;
     return (

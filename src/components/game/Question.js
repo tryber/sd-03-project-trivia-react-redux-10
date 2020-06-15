@@ -41,7 +41,8 @@ class Question extends React.Component {
 
   render() {
     const { data, propDisable, index } = this.props;
-    const alternatives = Question.shuffleArray([data.correct_answer, ...data.incorrect_answers]);
+    // const alternatives = Question.shuffleArray([data.correct_answer, ...data.incorrect_answers]);
+    const alternatives = [data.correct_answer, ...data.incorrect_answers];
     return (
       <div>
         <div className="header">
