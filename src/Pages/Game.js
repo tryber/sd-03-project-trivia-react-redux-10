@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchTriviaApi, fetchToken } from '../actions';
+import { fetchTriviaApi } from '../actions';
 import QuestionLibrary from '../components/game/QuestionLibrary';
 import PlayerHeader from '../components/PlayerHeader';
 
@@ -26,7 +26,6 @@ class Game extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getToken: () => dispatch(fetchToken()),
   getTrivia: (token) => dispatch(fetchTriviaApi(token)),
 });
 
@@ -38,7 +37,6 @@ const mapStateToProps = (state) => ({
 Game.propTypes = {
   loading: PropTypes.bool.isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  getToken: PropTypes.func.isRequired,
   getTrivia: PropTypes.func.isRequired,
 };
 

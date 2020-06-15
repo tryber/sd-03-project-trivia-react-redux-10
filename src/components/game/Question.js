@@ -20,7 +20,7 @@ class Question extends React.Component {
     this.handleNextQuestion = this.handleNextQuestion.bind(this);
     this.state = {
       shuffledAlternatives: [],
-    }
+    };
   }
 
   componentDidMount() {

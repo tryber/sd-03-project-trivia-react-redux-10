@@ -13,7 +13,7 @@ class FormLogin extends Component {
       emailGravatar: '',
       redirect: false,
     };
-    this.playerLocalStorage=this.playerLocalStorage.bind(this);
+    this.playerLocalStorage = this.playerLocalStorage.bind(this);
   }
 
   updateLogin(field, newValue) {
@@ -22,23 +22,7 @@ class FormLogin extends Component {
 
   validateIputs() {
     const { name, emailGravatar } = this.state;
-    return (Object.values({name, emailGravatar}).some(((value) => !value)));
-  }
-
-  renderLabelInput(textLabel, type, id, name, dataTestid) {
-    return (
-      <label htmlFor={id}>
-        {textLabel}
-        <input
-          id={id}
-          name={name}
-          type={type}
-          value={this.state[name]}
-          data-testid={dataTestid}
-          onChange={(event) => this.updateLogin(name, event.target.value)}
-        />
-      </label>
-    );
+    return (Object.values({ name, emailGravatar }).some(((value) => !value)));
   }
 
   renderButton() {
@@ -74,14 +58,20 @@ class FormLogin extends Component {
     this.setState({ redirect: true });
   }
 
-  renderButtonSettings() {
+
+  renderLabelInput(textLabel, type, id, name, dataTestid) {
     return (
-      <input
-        value="configurações"
-        data-testid="btn-settings"
-        id="config"
-        type="button"
-      />
+      <label htmlFor={id}>
+        {textLabel}
+        <input
+          id={id}
+          name={name}
+          type={type}
+          value={this.state[name]}
+          data-testid={dataTestid}
+          onChange={(event) => this.updateLogin(name, event.target.value)}
+        />
+      </label>
     );
   }
 
@@ -91,7 +81,12 @@ class FormLogin extends Component {
         {this.renderLabelInput('insira o nome', 'text', 'name', 'name', 'input-player-name')}
         {this.renderLabelInput('insira o email', 'email', 'email', 'emailGravatar', 'input-gravatar-email')}
         {this.renderButton()}
-        {this.renderButtonSettings()}
+        <input
+          value="configurações"
+          data-testid="btn-settings"
+          id="config"
+          type="button"
+      />
       </form>
     );
   }
@@ -99,8 +94,8 @@ class FormLogin extends Component {
   render() {
     const { redirect } = this.state;
     if (redirect) {
-       return <Redirect to='/game'/>;
-     }
+      return <Redirect to="/game" />;
+    }
 
     return (
       <div>
