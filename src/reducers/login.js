@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   isLogged: false,
   name: '',
   emailGravatar: '',
-  urlGravatar: 'https://www.gravatar.com/avatar/',
+  urlGravatar: 'https://www.gravatar.com/avatar/2d3bf5b67282f5f466e503d7022abcf3',
 };
 
 const loginReducer = (state = INITIAL_STATE, action) => {

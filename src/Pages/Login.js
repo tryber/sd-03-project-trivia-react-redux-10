@@ -5,10 +5,10 @@ import LogoGravatar from '../components/LogoUser';
 class Login extends React.Component {
   render() {
     return (
-      <div>
-        <LogoGravatar />
-        <FormLogin />
-      </div>
+        <header>
+          <LogoGravatar />
+          <FormLogin />
+        </header>
     );
   }
 }

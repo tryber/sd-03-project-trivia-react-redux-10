@@ -16,6 +16,11 @@ class FormLogin extends Component {
     this.setState({ [field]: newValue });
   }
 
+  validateInputs() {
+    const { name, emailGravatar } = this.state;
+    return !(name && emailGravatar);   
+  }
+
   renderLabelInput(textLabel, type, id, name, dataTestid) {
     return (
       <label htmlFor={id}>
@@ -40,7 +45,9 @@ class FormLogin extends Component {
         data-testid="btn-play"
         id="jogar"
         type="button"
-        onClick={() => log(this.state)}
+        disabled={this.validateInputs()}
+        onClick={() => {log(this.state)
+        console.log('felipe')}}
       />
     );
   }
