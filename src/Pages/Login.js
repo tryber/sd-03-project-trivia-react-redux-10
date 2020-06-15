@@ -1,9 +1,14 @@
 import React from 'react';
+import FormLogin from '../components/FormLogin';
+import LogoGravatar from '../components/LogoUser';
 
 class Login extends React.Component {
   render() {
     return (
-      <p>Login Page</p>
+      <header>
+        <LogoGravatar />
+        <FormLogin />
+      </header>
     );
   }
 }

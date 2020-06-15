@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
-import triviaApi from './triviaApi';
-import requestToken from './requestToken';
+import loginReducer from './login';
 
-const rootReducer = combineReducers({ triviaApi, requestToken });
+const rootReducer = combineReducers({
+  loginReducer,
+});
 
 export default rootReducer;
