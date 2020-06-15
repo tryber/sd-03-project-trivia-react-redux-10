@@ -51,7 +51,7 @@ class FormLogin extends Component {
   }
 
   renderButtonSettings() {
-    const { log } = this.props;
+    console.log(this.props);
     return (
       <input
         value="configurações"
