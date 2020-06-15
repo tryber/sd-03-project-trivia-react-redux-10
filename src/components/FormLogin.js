@@ -15,9 +15,9 @@ class FormLogin extends Component {
   updateLogin(field, newValue) {
     this.setState({ [field]: newValue });
   }
-  
+
   validateIputs() {
-    return (Object.values(this.state).some((value => !value)))
+    return (Object.values(this.state).some(((value) => !value)));
   }
 
   renderLabelInput(textLabel, type, id, name, dataTestid) {
@@ -60,7 +60,7 @@ class FormLogin extends Component {
       />
     );
   }
-  
+
   renderForm() {
     return (
       <form>
