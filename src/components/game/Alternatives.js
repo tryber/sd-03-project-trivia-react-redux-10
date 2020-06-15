@@ -45,7 +45,7 @@ class Alternatives extends React.Component {
     return (
       <div>
         { alternatives
-          .map((alternative, index) => alternative === correct ? (
+          .map((alternative, index) => (alternative === correct) ? (
             <button
               key={alternative}
               data-testid="correct-answer"
@@ -65,7 +65,7 @@ class Alternatives extends React.Component {
             >
               {alternative}
             </button>
-        )
+        );
         ) }
       </div>
     );
@@ -96,6 +96,7 @@ Alternatives.propTypes = {
   id: PropTypes.number,
   time: PropTypes.number.isRequired,
   notAnswered: PropTypes.bool.isRequired,
+  alternatives: PropTypes.array.isRquired,
 };
 
 Alternatives.defaultProps = {

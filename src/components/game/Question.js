@@ -19,18 +19,16 @@ class Question extends React.Component {
   }
 
   shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    for (let i = array.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
   }
 
   render() {
     const { data, propDisable, index } = this.props;
-    const { correct_answer, incorrect_answers } = data;
-    const alternatives = this.shuffleArray([correct_answer, ...incorrect_answers]);
-    console.log(data);
+    const alternatives = this.shuffleArray([data.correct_answer, ...data.incorrect_answers]);
     return (
       <div>
         <div className="header">
@@ -45,7 +43,7 @@ class Question extends React.Component {
         <div>
           <Alternatives
             alternatives={alternatives}
-            correct={correct_answer}
+            correct={data.correct_answer}
             difficulty={data.difficulty}
           />
         </div>
