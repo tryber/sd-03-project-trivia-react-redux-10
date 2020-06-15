@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { fetchToken } from '../actions';
 import { logInto } from '../actions/login';
 
 class FormLogin extends Component {
@@ -9,6 +11,7 @@ class FormLogin extends Component {
     this.state = {
       name: '',
       emailGravatar: '',
+      redirect: false,
     };
   }
 
@@ -17,7 +20,8 @@ class FormLogin extends Component {
   }
 
   validateIputs() {
-    return (Object.values(this.state).some(((value) => !value)));
+    const { name, emailGravatar } = this.state;
+    return (Object.values({name, emailGravatar}).some(((value) => !value)));
   }
 
   renderLabelInput(textLabel, type, id, name, dataTestid) {
@@ -37,7 +41,6 @@ class FormLogin extends Component {
   }
 
   renderButton() {
-    const { log } = this.props;
     return (
       <input
         value="jogar"
@@ -45,9 +48,18 @@ class FormLogin extends Component {
         id="jogar"
         type="button"
         disabled={this.validateIputs()}
-        onClick={() => log(this.state)}
+        onClick={() => this.loginAndGetToken()}
       />
     );
+  }
+
+  async loginAndGetToken() {
+    const { getToken, log } = this.props;
+    await getToken()
+      .then(({ token }) => localStorage.setItem('token', token.token))
+      .then(log(this.state));
+
+    this.setState({ redirect: true });
   }
 
   renderButtonSettings() {
@@ -74,6 +86,11 @@ class FormLogin extends Component {
   }
 
   render() {
+    const { redirect } = this.state;
+    if (redirect) {
+       return <Redirect to='/game'/>;
+     }
+
     return (
       <div>
         {this.renderForm()}
@@ -83,11 +100,13 @@ class FormLogin extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  getToken: () => dispatch(fetchToken()),
   log: (login) => dispatch(logInto(login)),
 });
 
 FormLogin.propTypes = {
   log: PropTypes.func.isRequired,
+  getToken: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(FormLogin);

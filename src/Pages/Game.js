@@ -8,10 +8,7 @@ import PlayerHeader from '../components/PlayerHeader';
 class Game extends React.Component {
 
   async componentDidMount() {
-    const { getToken, getTrivia } = this.props;
-    await getToken()
-      .then(({ token }) => localStorage.setItem('token', token.token));
-
+    const { getTrivia } = this.props;
     await getTrivia(localStorage.getItem('token'));
   }
 

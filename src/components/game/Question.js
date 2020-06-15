@@ -17,7 +17,22 @@ class Question extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.handleNextQuestion = this.handleNextQuestion.bind(this);
+    this.state = {
+      shuffledAlternatives: [],
+    }
   }
+
+  componentDidMount() {
+    this.handleNextQuestion();
+  }
+
+  handleNextQuestion() {
+    const { data } = this.props;
+    const alternatives = Question.shuffleArray([data.correct_answer, ...data.incorrect_answers]);
+    this.setState({ shuffledAlternatives: alternatives });
+  }
+
 
   handleClick() {
     this.props.propNextQuestion(1);
@@ -51,7 +66,7 @@ class Question extends React.Component {
           && index !== 4
           && <button data-testid="btn-next" onClick={() => this.handleClick()}>Próxima</button>
         }
-        {propDisable && index === 4 && <button data-testid="btn-next"><Link to={'/feedback'}>Próxima</Link></button>}
+        {propDisable && index === 4 && <button data-testid="btn-next" onClick={() => this.handleNextQuestion()}><Link to={'/feedback'}>Próxima</Link></button>}
       </div>
     );
   }
