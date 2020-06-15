@@ -20,8 +20,7 @@ class Alternatives extends React.Component {
   }
 
   render() {
-    const { correct, incorrects, notAnswered } = this.props;
-    const alternatives = [correct, ...incorrects];
+    const { alternatives, notAnswered, correct } = this.props;
     return (
       <div>
         { alternatives
@@ -67,7 +66,6 @@ Alternatives.propTypes = {
     PropTypes.number,
     PropTypes.bool,
   ]).isRequired,
-  incorrects: PropTypes.arrayOf(PropTypes.any).isRequired,
   propCorrectAnswer: PropTypes.func.isRequired,
   propIncorrectAnswer: PropTypes.func.isRequired,
   notAnswered: PropTypes.bool.isRequired,

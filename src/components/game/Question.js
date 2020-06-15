@@ -3,9 +3,19 @@ import PropTypes from 'prop-types';
 import Alternatives from './Alternatives';
 
 class Question extends React.Component {
+
+  shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   render() {
     const { data } = this.props;
-    console.log(data);
+    const { correct_answer, incorrect_answers } = data;
+    const alternatives = this.shuffleArray([correct_answer, ...incorrect_answers]);
     return (
       <div>
         <div className="header">
@@ -18,7 +28,7 @@ class Question extends React.Component {
         </div>
         <h3 data-testid="question-text">{data.question}</h3>
         <div>
-          <Alternatives correct={data.correct_answer} incorrects={data.incorrect_answers} />
+          <Alternatives alternatives={alternatives} correct={correct_answer} />
         </div>
       </div>
     );
