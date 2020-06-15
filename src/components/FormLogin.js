@@ -18,7 +18,7 @@ class FormLogin extends Component {
 
   validateInputs() {
     const { name, emailGravatar } = this.state;
-    return !(name && emailGravatar);   
+    return !(name && emailGravatar);
   }
 
   renderLabelInput(textLabel, type, id, name, dataTestid) {
@@ -46,8 +46,7 @@ class FormLogin extends Component {
         id="jogar"
         type="button"
         disabled={this.validateInputs()}
-        onClick={() => {log(this.state)
-        console.log('felipe')}}
+        onClick={() => log(this.state)}
       />
     );
   }
