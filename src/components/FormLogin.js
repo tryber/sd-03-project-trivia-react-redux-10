@@ -10,6 +10,7 @@ class FormLogin extends Component {
       name: '',
       emailGravatar: '',
     };
+    this.renderButtonSettings=this.renderButtonSettings.bind(this)
   }
 
   updateLogin(field, newValue) {
