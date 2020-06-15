@@ -8,6 +8,12 @@ import { nextQuestion } from '../../actions/alternativesActions';
 import { resetTimer } from '../../actions/timerActions';
 
 class Question extends React.Component {
+  static shuffleArray(arr) {
+    return arr.map((a) => [Math.random(), a])
+      .sort((a, b) => a[0] - b[0])
+      .map((a) => a[1]);
+  }
+
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -16,12 +22,6 @@ class Question extends React.Component {
   handleClick() {
     this.props.propNextQuestion(1);
     this.props.propResetTimer();
-  }
-
-  static shuffleArray(arr) {
-    return arr.map((a) => [Math.random(), a])
-      .sort((a, b) => a[0] - b[0])
-      .map((a) => a[1]);
   }
 
   render() {

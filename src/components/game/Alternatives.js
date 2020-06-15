@@ -44,16 +44,16 @@ class Alternatives extends React.Component {
     const { alternatives, correct, propDisable } = this.props;
     return (
       <div>
-        { alternatives.map((alternative, index) => (alternative === correct) ? (
-            <button
-              key={alternative}
-              data-testid="correct-answer"
-              className={!propDisable ? '' : 'correct'}
-              disabled={propDisable}
-              onClick={(e) => this.handleAnswer(e)}
-            >
-              {alternative}
-            </button>
+        { alternatives.map((alternative, index) => alternative === correct ? (
+          <button
+            key={alternative}
+            data-testid="correct-answer"
+            className={!propDisable ? '' : 'correct'}
+            disabled={propDisable}
+            onClick={(e) => this.handleAnswer(e)}
+          >
+            {alternative}
+          </button>
         ) : (
           <button
             key={alternative}
