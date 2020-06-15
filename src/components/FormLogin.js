@@ -50,8 +50,8 @@ class FormLogin extends Component {
     );
   }
 
-  renderButtonSettings() {
-    return (
+  renderButtonSettings = () => 
+    (
       <input
         value="configurações"
         data-testid="btn-settings"
@@ -59,7 +59,6 @@ class FormLogin extends Component {
         type="button"
       />
     );
-  }
 
   renderForm() {
     return (
