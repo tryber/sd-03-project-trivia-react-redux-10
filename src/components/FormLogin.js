@@ -38,16 +38,6 @@ class FormLogin extends Component {
     );
   }
 
-  playerLocalStorage() {
-    const player = {
-      name: this.state.name,
-      assertions: 0,
-      score: 0,
-      gravatarEmail: this.state.emailGravatar,
-    };
-    localStorage.setItem('state', JSON.stringify(player));
-  }
-
   async loginAndGetToken() {
     this.playerLocalStorage();
     const { getToken, log } = this.props;
@@ -58,6 +48,15 @@ class FormLogin extends Component {
     this.setState({ redirect: true });
   }
 
+  playerLocalStorage() {
+    const player = {
+      name: this.state.name,
+      assertions: 0,
+      score: 0,
+      gravatarEmail: this.state.emailGravatar,
+    };
+    localStorage.setItem('state', JSON.stringify(player));
+  }
 
   renderLabelInput(textLabel, type, id, name, dataTestid) {
     return (
@@ -86,7 +85,7 @@ class FormLogin extends Component {
           data-testid="btn-settings"
           id="config"
           type="button"
-      />
+        />
       </form>
     );
   }
