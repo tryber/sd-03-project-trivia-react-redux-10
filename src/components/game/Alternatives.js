@@ -44,8 +44,7 @@ class Alternatives extends React.Component {
     const { alternatives, correct, propDisable } = this.props;
     return (
       <div>
-        { alternatives
-          .map((alternative, index) => alternative === correct ? (
+        { alternatives.map((alternative, index) => (alternative === correct) ? (
             <button
               key={alternative}
               data-testid="correct-answer"

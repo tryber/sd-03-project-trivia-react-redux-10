@@ -18,15 +18,15 @@ class Question extends React.Component {
     this.props.propResetTimer();
   }
 
-  shuffleArray(arr) {
-    return arr.map(a => [Math.random(), a])
+  static shuffleArray(arr) {
+    return arr.map((a) => [Math.random(), a])
       .sort((a, b) => a[0] - b[0])
-      .map(a => a[1]);
+      .map((a) => a[1]);
   }
 
   render() {
     const { data, propDisable, index } = this.props;
-    const alternatives = this.shuffleArray([data.correct_answer, ...data.incorrect_answers]);
+    const alternatives = Question.shuffleArray([data.correct_answer, ...data.incorrect_answers]);
     return (
       <div>
         <div className="header">
