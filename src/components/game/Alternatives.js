@@ -45,7 +45,7 @@ class Alternatives extends React.Component {
     return (
       <div>
         { alternatives
-          .map((alternative, index) => (alternative === correct) ? (
+          .map((alternative, index) => alternative === correct ? (
             <button
               key={alternative}
               data-testid="correct-answer"
@@ -56,16 +56,16 @@ class Alternatives extends React.Component {
               {alternative}
             </button>
         ) : (
-            <button
-              key={alternative}
-              data-testid={`wrong-answer-${index}`}
-              className={!propDisable ? '' : 'wrong'}
-              disabled={propDisable}
-              onClick={(e) => this.handleAnswer(e)}
-            >
-              {alternative}
-            </button>
-        )
+          <button
+            key={alternative}
+            data-testid={`wrong-answer-${index}`}
+            className={!propDisable ? '' : 'wrong'}
+            disabled={propDisable}
+            onClick={(e) => this.handleAnswer(e)}
+          >
+            {alternative}
+          </button>
+        ),
         ) }
       </div>
     );
