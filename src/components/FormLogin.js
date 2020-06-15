@@ -25,19 +25,6 @@ class FormLogin extends Component {
     return (Object.values({ name, emailGravatar }).some(((value) => !value)));
   }
 
-  renderButton() {
-    return (
-      <input
-        value="jogar"
-        data-testid="btn-play"
-        id="jogar"
-        type="button"
-        disabled={this.validateIputs()}
-        onClick={() => this.loginAndGetToken()}
-      />
-    );
-  }
-
   async loginAndGetToken() {
     this.playerLocalStorage();
     const { getToken, log } = this.props;
@@ -56,6 +43,19 @@ class FormLogin extends Component {
       gravatarEmail: this.state.emailGravatar,
     };
     localStorage.setItem('state', JSON.stringify(player));
+  }
+
+  renderButton() {
+    return (
+      <input
+        value="jogar"
+        data-testid="btn-play"
+        id="jogar"
+        type="button"
+        disabled={this.validateIputs()}
+        onClick={() => this.loginAndGetToken()}
+      />
+    );
   }
 
   renderLabelInput(textLabel, type, id, name, dataTestid) {
