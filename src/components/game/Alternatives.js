@@ -41,7 +41,7 @@ class Alternatives extends React.Component {
   }
 
   render() {
-    const { alternatives, notAnswered, correct } = this.props;
+    const { alternatives, correct, propDisable } = this.props;
     return (
       <div>
         { alternatives
@@ -49,8 +49,8 @@ class Alternatives extends React.Component {
             <button
               key={alternative}
               data-testid="correct-answer"
-              className={notAnswered ? '' : 'correct'}
-              disabled={!notAnswered}
+              className={!propDisable ? '' : 'correct'}
+              disabled={propDisable}
               onClick={(e) => this.handleAnswer(e)}
             >
               {alternative}
@@ -59,13 +59,13 @@ class Alternatives extends React.Component {
             <button
               key={alternative}
               data-testid={`wrong-answer-${index}`}
-              className={notAnswered ? '' : 'wrong'}
-              disabled={!notAnswered}
+              className={!propDisable ? '' : 'wrong'}
+              disabled={propDisable}
               onClick={(e) => this.handleAnswer(e)}
             >
               {alternative}
             </button>
-        );
+        )
         ) }
       </div>
     );
@@ -75,7 +75,7 @@ class Alternatives extends React.Component {
 const mapStateToProps = (state) => ({
   time: state.timer.time,
   id: state.timer.id,
-  notAnswered: state.alternatives.notAnswered,
+  propDisable: state.alternatives.disable,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -95,8 +95,8 @@ Alternatives.propTypes = {
   propIncorrectAnswer: PropTypes.func.isRequired,
   id: PropTypes.number,
   time: PropTypes.number.isRequired,
-  notAnswered: PropTypes.bool.isRequired,
-  alternatives: PropTypes.array.isRquired,
+  propDisable: PropTypes.bool.isRequired,
+  alternatives: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 Alternatives.defaultProps = {

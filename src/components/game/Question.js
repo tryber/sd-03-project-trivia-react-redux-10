@@ -18,13 +18,10 @@ class Question extends React.Component {
     this.props.propResetTimer();
   }
 
-  shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
+  shuffleArray = arr => arr
+  .map(a => [Math.random(), a])
+  .sort((a, b) => a[0] - b[0])
+  .map(a => a[1]);
 
   render() {
     const { data, propDisable, index } = this.props;
@@ -73,6 +70,7 @@ Question.propTypes = {
   data: PropTypes.objectOf(PropTypes.any).isRequired,
   propNextQuestion: PropTypes.func.isRequired,
   propResetTimer: PropTypes.func.isRequired,
+  propDisable: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
 };
 
