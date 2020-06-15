@@ -15,10 +15,9 @@ class FormLogin extends Component {
   updateLogin(field, newValue) {
     this.setState({ [field]: newValue });
   }
-
-  validateInputs() {
-    const { name, emailGravatar } = this.state;
-    return !(name && emailGravatar);
+  
+  validateIputs() {
+    return (Object.values(this.state).some((value => !value)))
   }
 
   renderLabelInput(textLabel, type, id, name, dataTestid) {
@@ -45,18 +44,30 @@ class FormLogin extends Component {
         data-testid="btn-play"
         id="jogar"
         type="button"
-        disabled={this.validateInputs()}
+        disabled={this.validateIputs()}
         onClick={() => log(this.state)}
       />
     );
   }
 
+  renderButtonSettings() {
+    return (
+      <input
+        value="configurações"
+        data-testid="btn-settings"
+        id="config"
+        type="button"
+      />
+    );
+  }
+  
   renderForm() {
     return (
       <form>
         {this.renderLabelInput('insira o nome', 'text', 'name', 'name', 'input-player-name')}
         {this.renderLabelInput('insira o email', 'email', 'email', 'emailGravatar', 'input-gravatar-email')}
         {this.renderButton()}
+        {this.renderButtonSettings()}
       </form>
     );
   }
