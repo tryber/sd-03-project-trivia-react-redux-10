@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchToken } from '../actions';
 import { logInto } from '../actions/login';
@@ -80,12 +80,14 @@ class FormLogin extends Component {
         {this.renderLabelInput('insira o nome', 'text', 'name', 'name', 'input-player-name')}
         {this.renderLabelInput('insira o email', 'email', 'email', 'emailGravatar', 'input-gravatar-email')}
         {this.renderButton()}
-        <input
-          value="configurações"
-          data-testid="btn-settings"
-          id="config"
-          type="button"
-        />
+        <Link to="/settings">
+          <input
+            value="configurações"
+            data-testid="btn-settings"
+            id="config"
+            type="button"
+          />
+        </Link>
       </form>
     );
   }
