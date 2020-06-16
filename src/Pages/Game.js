@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchTriviaApi, fetchToken } from '../actions';
+import { fetchTriviaApi } from '../actions';
+import QuestionLibrary from '../components/game/QuestionLibrary';
+import PlayerHeader from '../components/PlayerHeader';
 
-class Questions extends React.Component {
+class Game extends React.Component {
 
-  componentDidMount() {
-    const { getToken, getTrivia } = this.props;
-    getToken()
-      .then(({ token }) => localStorage.setItem('token', token.token))
-      .then(getTrivia(localStorage.getItem('token')));
+  async componentDidMount() {
+    const { getTrivia } = this.props;
+    await getTrivia(localStorage.getItem('token'));
   }
 
   render() {
@@ -17,15 +17,15 @@ class Questions extends React.Component {
     if (loading) return <p> Loading... </p>;
     return (
       <div>
-        <h2> Questions page </h2>
-        { data.map((el) => <p>{el.question}</p>) }
+        <h2> Game page </h2>
+        <PlayerHeader />
+        <QuestionLibrary data={data} />
       </div>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getToken: () => dispatch(fetchToken()),
   getTrivia: (token) => dispatch(fetchTriviaApi(token)),
 });
 
@@ -34,11 +34,10 @@ const mapStateToProps = (state) => ({
   loading: state.triviaApi.loading,
 });
 
-Questions.propTypes = {
+Game.propTypes = {
   loading: PropTypes.bool.isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  getToken: PropTypes.func.isRequired,
   getTrivia: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Questions);
+export default connect(mapStateToProps, mapDispatchToProps)(Game);
