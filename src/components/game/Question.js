@@ -41,8 +41,9 @@ class Question extends React.Component {
 
   handleFeedback() {
     const { player } = JSON.parse(localStorage.getItem('state'));
+    const { score } = this.props;
     const photoURL = cryptEmail(player.gravatarEmail);
-    const playerInRanking = {name: player.name, score: player.score, picture: photoURL};
+    const playerInRanking = { name: player.name, score: score, picture: photoURL };
     if (localStorage.getItem('ranking')) {
       const oldRanking = JSON.parse(localStorage.getItem('ranking'));
       const newRanking = [...oldRanking, playerInRanking];
@@ -50,8 +51,8 @@ class Question extends React.Component {
     } else {
       const newRanking = [playerInRanking];
       localStorage.setItem('ranking', JSON.stringify(newRanking));
-      }
     }
+  }
 
   render() {
     const { data, propDisable, index } = this.props;
@@ -90,6 +91,7 @@ class Question extends React.Component {
 const mapStateToProps = (state) => ({
   propDisable: state.alternatives.disable,
   index: state.alternatives.index,
+  score: state.alternatives.score,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -103,6 +105,7 @@ Question.propTypes = {
   propResetTimer: PropTypes.func.isRequired,
   propDisable: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
+  score: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question);

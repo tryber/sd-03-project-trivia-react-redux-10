@@ -7,7 +7,7 @@ import LogoGravatar from '../components/LogoUser';
 
 class Login extends React.Component {
   componentDidMount() {
-    const { propResetReducer} = this.props;
+    const { propResetReducer } = this.props;
     propResetReducer();
     if (localStorage.getItem('state')) {
       localStorage.removeItem('state');

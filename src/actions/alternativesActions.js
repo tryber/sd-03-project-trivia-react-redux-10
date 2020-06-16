@@ -34,4 +34,4 @@ export const nextQuestion = (index) => ({
 
 export const resetAlternativesReducer = () => ({
   type: RESET_REDUCER,
-})
+});

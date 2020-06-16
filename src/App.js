@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './Pages/Login';
 import Game from './Pages/Game';
-import Feedback from './Pages/Feedback'
+import Feedback from './Pages/Feedback';
 import Ranking from './Pages/Ranking';
 import Settings from './Pages/Settings';
 import cryptEmail from './services/cryptoGravatarAPI';

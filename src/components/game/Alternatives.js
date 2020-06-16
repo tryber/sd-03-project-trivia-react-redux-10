@@ -23,7 +23,7 @@ class Alternatives extends React.Component {
       score: player.score + newScore,
       gravatarEmail: player.gravatarEmail,
     };
-    localStorage.setItem('state', JSON.stringify({player: updatePlayer}));
+    localStorage.setItem('state', JSON.stringify({ player: updatePlayer }));
     return newScore;
   }
 

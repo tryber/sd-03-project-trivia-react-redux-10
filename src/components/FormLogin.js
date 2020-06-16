@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchToken } from '../actions';
 import { logInto } from '../actions/login';
 
-class FormLogin extends Component {
+class FormLogin extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -15,7 +15,6 @@ class FormLogin extends Component {
     };
     this.playerLocalStorage = this.playerLocalStorage.bind(this);
     };
-  }
 
   updateLogin(field, newValue) {
     this.setState({ [field]: newValue });
