@@ -14,7 +14,7 @@ class FormLogin extends React.Component {
       redirect: false,
     };
     this.playerLocalStorage = this.playerLocalStorage.bind(this);
-    };
+  }
 
   updateLogin(field, newValue) {
     this.setState({ [field]: newValue });
@@ -42,11 +42,10 @@ class FormLogin extends React.Component {
       score: 0,
       gravatarEmail: this.state.emailGravatar,
     };
-    localStorage.setItem('state', JSON.stringify({player}));
+    localStorage.setItem('state', JSON.stringify({ player }));
   }
 
   renderButton() {
-
     return (
       <input
         value="jogar"

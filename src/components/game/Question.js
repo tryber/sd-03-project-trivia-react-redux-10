@@ -43,7 +43,7 @@ class Question extends React.Component {
     const { player } = JSON.parse(localStorage.getItem('state'));
     const { score } = this.props;
     const photoURL = cryptEmail(player.gravatarEmail);
-    const playerInRanking = { name: player.name, score: score, picture: photoURL };
+    const playerInRanking = { name: player.name, score, picture: photoURL };
     if (localStorage.getItem('ranking')) {
       const oldRanking = JSON.parse(localStorage.getItem('ranking'));
       const newRanking = [...oldRanking, playerInRanking];
