@@ -7,7 +7,7 @@ import './PlayerHeader.css';
 class PlayerHeader extends React.Component {
   render() {
     const { score } = this.props;
-    const player = JSON.parse(localStorage.getItem('state'));
+    const player = localStorage.getItem('state');
     return (
       <div className="player-header">
         <img
