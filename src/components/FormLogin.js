@@ -14,6 +14,7 @@ class FormLogin extends Component {
       redirect: false,
     };
     this.playerLocalStorage = this.playerLocalStorage.bind(this);
+    };
   }
 
   updateLogin(field, newValue) {
@@ -46,6 +47,7 @@ class FormLogin extends Component {
   }
 
   renderButton() {
+
     return (
       <input
         value="jogar"
@@ -53,11 +55,11 @@ class FormLogin extends Component {
         id="jogar"
         type="button"
         disabled={this.validateIputs()}
+
         onClick={() => this.loginAndGetToken()}
       />
     );
   }
-
   renderLabelInput(textLabel, type, id, name, dataTestid) {
     return (
       <label htmlFor={id}>
