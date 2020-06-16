@@ -42,7 +42,7 @@ class FormLogin extends Component {
       score: 0,
       gravatarEmail: this.state.emailGravatar,
     };
-    localStorage.setItem('state', JSON.stringify(player));
+    localStorage.setItem('state', JSON.stringify({player}));
   }
 
   renderButton() {

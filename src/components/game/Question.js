@@ -6,6 +6,7 @@ import Alternatives from './Alternatives';
 import Timer from './Timer';
 import { nextQuestion } from '../../actions/alternativesActions';
 import { resetTimer } from '../../actions/timerActions';
+import cryptEmail from '../../services/cryptoGravatarAPI';
 
 class Question extends React.Component {
   static shuffleArray(arr) {
@@ -33,11 +34,24 @@ class Question extends React.Component {
     this.setState({ shuffledAlternatives: alternatives });
   }
 
-
   handleClick() {
     this.props.propNextQuestion(1);
     this.props.propResetTimer();
   }
+
+  handleFeedback() {
+    const { player } = JSON.parse(localStorage.getItem('state'));
+    const photoURL = cryptEmail(player.gravatarEmail);
+    const playerInRanking = {name: player.name, score: player.score, picture: photoURL};
+    if (localStorage.getItem('ranking')) {
+      const oldRanking = JSON.parse(localStorage.getItem('ranking'));
+      const newRanking = [...oldRanking, playerInRanking];
+      localStorage.setItem('ranking', JSON.stringify(newRanking));
+    } else {
+      const newRanking = [playerInRanking];
+      localStorage.setItem('ranking', JSON.stringify(newRanking));
+      }
+    }
 
   render() {
     const { data, propDisable, index } = this.props;
@@ -67,7 +81,7 @@ class Question extends React.Component {
           && index !== 4
           && <button data-testid="btn-next" onClick={() => this.handleClick()}>Próxima</button>
         }
-        {propDisable && index === 4 && <button data-testid="btn-next" onClick={() => this.handleNextQuestion()}><Link to={'/feedback'}>Próxima</Link></button>}
+        {propDisable && index === 4 && <button data-testid="btn-next" onClick={() => this.handleFeedback()}><Link to={'/feedback'}>Próxima</Link></button>}
       </div>
     );
   }

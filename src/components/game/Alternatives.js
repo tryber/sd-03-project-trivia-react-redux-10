@@ -12,7 +12,7 @@ class Alternatives extends React.Component {
 
   newScore() {
     const { difficulty, time } = this.props;
-    const player = JSON.parse(localStorage.getItem('state'));
+    const { player } = JSON.parse(localStorage.getItem('state'));
     let newScore = 0;
     if (difficulty === 'hard') newScore = 10 + (time * 3);
     if (difficulty === 'medium') newScore = 10 + (time * 2);
@@ -23,7 +23,7 @@ class Alternatives extends React.Component {
       score: player.score + newScore,
       gravatarEmail: player.gravatarEmail,
     };
-    localStorage.setItem('state', JSON.stringify(updatePlayer));
+    localStorage.setItem('state', JSON.stringify({player: updatePlayer}));
     return newScore;
   }
 

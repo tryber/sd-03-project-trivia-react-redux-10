@@ -6,6 +6,8 @@ export const INCORRECT_ANSWER = 'INCORRECT_ANSWER';
 
 export const NEXT_QUESTION = 'NEXT_QUESTION';
 
+export const RESET_REDUCER = 'RESET_REDUCER';
+
 export const questionAnswered = () => ({
   type: QUESTION_ASWERED,
   loading: true,
@@ -29,3 +31,7 @@ export const nextQuestion = (index) => ({
   type: NEXT_QUESTION,
   index,
 });
+
+export const resetAlternativesReducer = () => ({
+  type: RESET_REDUCER,
+})

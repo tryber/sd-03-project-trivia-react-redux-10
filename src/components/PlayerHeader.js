@@ -7,7 +7,7 @@ import './PlayerHeader.css';
 class PlayerHeader extends React.Component {
   render() {
     const { score } = this.props;
-    const player = localStorage.getItem('state');
+    const { player } = JSON.parse(localStorage.getItem('state'));
     return (
       <div className="player-header">
         <img
@@ -16,8 +16,10 @@ class PlayerHeader extends React.Component {
           alt="Player"
           className="player-image"
         />
-        <p data-testid="header-player-name" className="player-name">Jogador: {player.name}</p>
-        <p data-testid="header-score" className="player-score">Pontos: {score}</p>
+        <p>Jogador: </p>
+        <p data-testid="header-player-name" className="player-name">{player.name}</p>
+        <p>Pontos: </p>
+        <p data-testid="header-score" className="player-score">{score}</p>
       </div>
     );
   }

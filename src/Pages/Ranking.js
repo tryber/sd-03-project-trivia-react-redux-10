@@ -15,7 +15,7 @@ class Ranking extends React.Component {
   render() {
     return (
       <div>
-        <h1>RANKING</h1>
+        <h1 data-testid="ranking-title">RANKING</h1>
         <div className="cards-div">
           {this.dados && this.dadosSorted().map((player, index) =>
             <PlayerCard key={player.name} player={player} index={index} />,
