@@ -1,22 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './Pages/Login';
-import Questions from './Pages/Questions';
+import Game from './Pages/Game';
 import Feedback from './Pages/Feedback';
 import Ranking from './Pages/Ranking';
 import Settings from './Pages/Settings';
-import cryptEmail from './services/cryptoGravatarAPI';
 
 import './App.css';
 
 function App() {
-  console.log(cryptEmail());
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/questions" component={Questions} />
+          <Route exact path="/game" component={Game} />
           <Route path="/feedback" component={Feedback} />
           <Route path="/ranking" component={Ranking} />
           <Route path="/settings" component={Settings} />

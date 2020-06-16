@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { fetchToken } from '../actions';
 import { logInto } from '../actions/login';
 
 class FormLogin extends Component {
@@ -9,7 +11,9 @@ class FormLogin extends Component {
     this.state = {
       name: '',
       emailGravatar: '',
+      redirect: false,
     };
+    this.playerLocalStorage = this.playerLocalStorage.bind(this);
   }
 
   updateLogin(field, newValue) {
@@ -17,7 +21,41 @@ class FormLogin extends Component {
   }
 
   validateIputs() {
-    return (Object.values(this.state).some(((value) => !value)));
+    const { name, emailGravatar } = this.state;
+    return (Object.values({ name, emailGravatar }).some(((value) => !value)));
+  }
+
+  async loginAndGetToken() {
+    this.playerLocalStorage();
+    const { getToken, log } = this.props;
+    await getToken()
+      .then(({ token }) => localStorage.setItem('token', token.token))
+      .then(log(this.state));
+
+    this.setState({ redirect: true });
+  }
+
+  playerLocalStorage() {
+    const player = {
+      name: this.state.name,
+      assertions: 0,
+      score: 0,
+      gravatarEmail: this.state.emailGravatar,
+    };
+    localStorage.setItem('state', JSON.stringify(player));
+  }
+
+  renderButton() {
+    return (
+      <input
+        value="jogar"
+        data-testid="btn-play"
+        id="jogar"
+        type="button"
+        disabled={this.validateIputs()}
+        onClick={() => this.loginAndGetToken()}
+      />
+    );
   }
 
   renderLabelInput(textLabel, type, id, name, dataTestid) {
@@ -36,44 +74,30 @@ class FormLogin extends Component {
     );
   }
 
-  renderButton() {
-    const { log } = this.props;
-    return (
-      <input
-        value="jogar"
-        data-testid="btn-play"
-        id="jogar"
-        type="button"
-        disabled={this.validateIputs()}
-        onClick={() => log(this.state)}
-      />
-    );
-  }
-
-  renderButtonSettings() {
-    console.log(this.props);
-    return (
-      <input
-        value="configurações"
-        data-testid="btn-settings"
-        id="config"
-        type="button"
-      />
-    );
-  }
-
   renderForm() {
     return (
       <form>
         {this.renderLabelInput('insira o nome', 'text', 'name', 'name', 'input-player-name')}
         {this.renderLabelInput('insira o email', 'email', 'email', 'emailGravatar', 'input-gravatar-email')}
         {this.renderButton()}
-        {this.renderButtonSettings()}
+        <Link to="/settings">
+          <input
+            value="configurações"
+            data-testid="btn-settings"
+            id="config"
+            type="button"
+          />
+        </Link>
       </form>
     );
   }
 
   render() {
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to="/game" />;
+    }
+
     return (
       <div>
         {this.renderForm()}
@@ -83,11 +107,13 @@ class FormLogin extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  getToken: () => dispatch(fetchToken()),
   log: (login) => dispatch(logInto(login)),
 });
 
 FormLogin.propTypes = {
   log: PropTypes.func.isRequired,
+  getToken: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(FormLogin);
