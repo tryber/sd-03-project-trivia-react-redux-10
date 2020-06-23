@@ -1,0 +1,17 @@
+.player-div {
+  align-items: center;
+  background-color: grey;
+  display: flex;
+  font-family: Roboto, sans-serif;
+  font-size: 40px;
+  height: 49px;
+  justify-content: space-between;
+  line-height: 47px;
+  width: 625px;
+}
+
+.image {
+  border-radius: 112.5px;
+  height: 34px;
+  width: 34px;
+}
